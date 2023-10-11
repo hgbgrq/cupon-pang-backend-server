@@ -61,5 +61,5 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
-          source: build/libs/*.jar
+          source: cicdsample
           target: ~/test
