@@ -46,11 +46,20 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: cicdsample
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
+      # - name: executing remote ssh commands using password
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.SERVER_IP }}
+      #     username: ${{ secrets.SSH_USER }}
+      #     password: ${{ secrets.SSH_PASSWORD }}
+      #     port: ${{ secrets.PORT }}
+      #     script: whoami
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: whoami
+          source: build/libs/*.jar
+          target: ~/test
