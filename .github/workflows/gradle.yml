@@ -33,7 +33,7 @@ jobs:
       with:
         arguments: build
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: cicdsample
         path: build/libs/*.jar
@@ -43,9 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: cicdsample
+          path: build2
       # - name: executing remote ssh commands using password
       #   uses: appleboy/ssh-action@master
       #   with:
@@ -61,5 +62,5 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
-          source: "build/libs/*.jar"
+          source: build2/*
           target: ~/test
