@@ -47,14 +47,6 @@ jobs:
         with:
           name: cicdsample
           path: build2
-      # - name: executing remote ssh commands using password
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.SERVER_IP }}
-      #     username: ${{ secrets.SSH_USER }}
-      #     password: ${{ secrets.SSH_PASSWORD }}
-      #     port: ${{ secrets.PORT }}
-      #     script: whoami
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -64,3 +56,11 @@ jobs:
           port: ${{ secrets.PORT }}
           source: build2/*
           target: ~/test
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: docker ps -a    
