@@ -46,10 +46,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: cicdsample
-      - name: Docker image pull and run
-        uses: appleboy/ssh-action@v0.1.7
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.PORT }}
+          script: whoami
