@@ -9,4 +9,15 @@
         LIMIT 1
     </select>
 
+    <select id = "selectSample" parameterType="java.lang.String" resultType="com.example.ticketbakend.sample.model.Sample">
+        SELECT
+            id
+            , name
+        FROM
+            TEST01
+        <where>
+            id = #{id}
+        </where>
+    </select>
+
 </mapper>
