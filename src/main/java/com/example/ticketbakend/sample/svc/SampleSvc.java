@@ -14,7 +14,6 @@ public class SampleSvc {
     private SampleDao sampleDao;
 
     public String selectTest(){
-        log.info(sampleDao.selectTestId());
         return sampleDao.selectTestId();
     }
 
